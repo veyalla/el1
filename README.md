@@ -88,13 +88,16 @@ Verify that the runtime was successfully installed and configured on your IoT Ed
 
 2. If you need to troubleshoot the service, retrieve the service logs.
 
-    az vm run-command invoke -g IoTEdgeResources -n EdgeVM --command-id RunShellScript --script "/etc/iotedge/configedge.sh '{device_connection_string}'"
+    
+        az vm run-command invoke -g IoTEdgeResources -n EdgeVM --command-id RunShellScript --script "/etc/iotedge/configedge.sh '{device_connection_string}'"
+    
 
 3. View the modules running on your device.
 
-    sudo iotedge list
+        sudo iotedge list
+   
 
-![](https://docs.microsoft.com/en-us/azure/iot-edge/media/quickstart-linux/iotedge-list-1.png)
+    ![](https://docs.microsoft.com/en-us/azure/iot-edge/media/quickstart-linux/iotedge-list-1.png)
 
 Your IoT Edge device is now configured. It's ready to run cloud-deployed modules!
 
