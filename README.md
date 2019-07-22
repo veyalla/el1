@@ -163,7 +163,7 @@ In this lab we'll stand up a Kubernetes environment, configure it to host an edg
 
 ## Bootstrap a Kubernetes cluster environment
 
-We'll use the k3d project that provides a lightweight single node Kubernetes environment to test this support. 
+We'll use the [k3d](https://github.com/rancher/k3d) project that provides a lightweight single node Kubernetes environment to test this support. 
 
 1. In the Azure cloud shell, enter the following command to create a second device named named **myEdgeDevice2**  in your hub.
 
@@ -241,8 +241,10 @@ We'll use the k3d project that provides a lightweight single node Kubernetes env
 
 13.  View the Kubernetes namespaces on the cluster. You should see a namespace create for the edge device of the form *msiot-**
 
+        ```
         kubectl get ns
-
+        ```
+        
 14. Watch the running pods in the namespace, and you should see all modules defined in your edge deployment running.
 
         watch kubectl get pods -n <msiot-xxx-xxx>
