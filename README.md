@@ -238,7 +238,7 @@ We'll use the [k3d](https://github.com/rancher/k3d) project that provides a ligh
         export KUBECONFIG="$(sudo k3d get-kubeconfig --name='k3s-default')" 
         
         # Install IoT Edge chart
-        helm install --name k8s-edge1 --set "deviceConnectionString=**<replace-with-device-connection-string>**" edgek8s/edge-kubernetes
+        helm install --name k8s-edge1 --set "deviceConnectionString=<replace-with-device-connection-string>" edgek8s/edge-kubernetes
 
 13.  View the Kubernetes namespaces on the cluster. You should see a namespace create for the edge device of the form *msiot-**
 
