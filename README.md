@@ -222,8 +222,9 @@ We'll use the [k3d](https://github.com/rancher/k3d) project that provides a ligh
             namespace: kube-system
         " | kubectl apply -f -
 
-10. Initialize Helm, this can take a minute or two.
+10. Download and initialize Helm, this can take a minute or two.
 
+        sudo snap install helm --classic && \
         helm init --service-account tiller
 
 11. Add a repo that contains the IoT Edge Helm chart.
