@@ -195,7 +195,7 @@ We'll use the [k3d](https://github.com/rancher/k3d) project that provides a ligh
 
 8. Associate kubectl with the Kubernetes cluster, and view cluster info.
 
-        export KUBECONFIG="$(sudo k3d get-kubeconfig --name='k3s-default')" && \
+        export KUBECONFIG="$(sudo k3d get-kubeconfig --name='test0')" && \
         kubectl cluster-info && \
         kubectl get nodes
 
