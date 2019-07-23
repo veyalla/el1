@@ -201,26 +201,28 @@ We'll use the [k3d](https://github.com/rancher/k3d) project that provides a ligh
 
 9. Prepare the cluster for installation of Helm, a package manager for Kubernetes by creating a service account for Tiller (Helm's in-cluster component):
 
-        echo "
-        apiVersion: v1
-        kind: ServiceAccount
-        metadata:
-          name: tiller
-          namespace: kube-system
-        ---
-        apiVersion: rbac.authorization.k8s.io/v1
-        kind: ClusterRoleBinding
-        metadata:
-          name: tiller
-        roleRef:
-          apiGroup: rbac.authorization.k8s.io
-          kind: ClusterRole
-          name: cluster-admin
-        subjects:
-          - kind: ServiceAccount
-            name: tiller
-            namespace: kube-system
-        " | kubectl apply -f -
+```
+echo "
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+" | kubectl apply -f -
+```
 
 10. Download and initialize Helm, this can take a minute or two.
 
@@ -235,7 +237,7 @@ We'll use the [k3d](https://github.com/rancher/k3d) project that provides a ligh
 12. Install the edge device into the cluster using the device connection string retrieved in Step 3 of this section.
 
         # Set kubecontext
-        export KUBECONFIG="$(sudo k3d get-kubeconfig --name='k3s-default')" 
+        export KUBECONFIG="$(sudo k3d get-kubeconfig --name='test0')" 
         
         # Install IoT Edge chart
         helm install --name k8s-edge1 --set "deviceConnectionString=<replace-with-device-connection-string>" edgek8s/edge-kubernetes
