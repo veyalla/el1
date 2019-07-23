@@ -6,7 +6,7 @@
 
 Azure hosts Azure Cloud Shell, an interactive shell environment that you can use through your browser.  You can use the Cloud Shell pre-installed commands to run the code in this lab without having to install anything on your local environment.
 
-**Go to https://shell.azure.com**
+**Go to https://shell.azure.com (please use bash version of the shell, not PowerShell)**
 
 Add the Azure IoT extension to the cloud shell instance.
 
@@ -46,13 +46,13 @@ Create a device identity for your IoT Edge device so that it can communicate wit
 
 Since IoT Edge devices behave and can be managed differently than typical IoT devices, declare this identity to be for an IoT Edge device with the `--edge-enabled` flag.
 
-1. In the Azure cloud shell, enter the following command to create a device named named **myEdgeDevice1**  in your hub.
+1. In the Azure cloud shell, enter the following command to create a device named named **myEdgeDevice1** in your hub. Replace `{hub_name}` with name of your choice. 
 
         az iot hub device-identity create --hub-name {hub_name} --device-id myEdgeDevice1 --edge-enabled
 
 2. Add a `gbb` tag to the device using the following command to update its twin:
 
-        az iot hub device-twin update --device-id myEdgeDevice1 --hub-name {iothub_name} --set tags='{"env":"gbb"}'
+        az iot hub device-twin update --device-id myEdgeDevice1 --hub-name {hub_name} --set tags='{"env":"gbb"}'
 
 3. Retrieve the connection string for your device, which is used to link your physical device with its identity in IoT Hub.
 
@@ -89,7 +89,7 @@ Verify that the runtime was successfully installed and configured on your IoT Ed
 2. If you need to troubleshoot the service, retrieve the service logs.
 
     
-        az vm run-command invoke -g IoTEdgeResources -n EdgeVM --command-id RunShellScript --script "/etc/iotedge/configedge.sh '{device_connection_string}'"
+        journalctl -u iotedge
     
 
 3. View the modules running on your device.
@@ -187,7 +187,7 @@ We'll use the [k3d](https://github.com/rancher/k3d) project that provides a ligh
 
 6. Create a single node Kubernetes cluster hosted in a docker container.
 
-        sudo k3d create
+        sudo k3d create -n test0 -w 2 --image rancher/k3s:v0.7.0-rc2
 
 7. Install kubectl, a command line to tool to interact with a Kubernetes cluster.
 
